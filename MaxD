@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("maxd.in");
+ofstream fout("maxd.out");
+int long long a, b, i, cnt=0, nrdiv, maxi=0, mini=10000000000, fr[10001], n, x;
+int nrdiviz(int n){
+int nr=1, i, d=2;
+for(int i=2;i*i<=n;i++){
+    int s=1;
+   
+while(n%i==0){
+ n/=i;
+ s++;
+}
+nr=nr*s;
+}
+if(n>1){
+    nr=nr*2;
+}
+return nr;
+
+}
+int main()
+{
+    fin>>a>>b;
+    for(int i=b;i>=a;i--){
+        if(nrdiviz(i)>=maxi){
+        maxi=nrdiviz(i);
+        fr[nrdiviz(i)]++;
+        x=i;
+        }
+    }
+    
+   
+    fout<<x<<" "<<nrdiviz(x)<<" "<<fr[nrdiviz(x)];
+    return 0;
+}
